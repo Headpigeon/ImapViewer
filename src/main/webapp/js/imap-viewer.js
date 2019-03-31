@@ -27,9 +27,18 @@ $(document).ready(function() {
             htmlLoaded.resolve();
         });
 
-        $.when(textLoaded, htmlLoaded).always(function() {
+        var loadDetails = $.get('/mail/part-info/' + msgNumber);
+        var detailsLoaded = $.Deferred();
+        loadDetails.done(function(html) {
+            $('#mailDetails').html(html);
+        }).always(function() {
+            detailsLoaded.resolve();
+        });
+
+        $.when(textLoaded, htmlLoaded, detailsLoaded).always(function() {
             $('#mailTextTab').toggleClass('disabled', !loadTextSuccess);
             $('#mailHtmlTab').toggleClass('disabled', !loadHtmlSuccess);
+            $('#mailDetailsTab').removeClass('disabled');
 
             if (loadHtmlSuccess) {
                 $('#mailHtmlTab').tab('show');

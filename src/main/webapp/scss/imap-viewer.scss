@@ -38,6 +38,15 @@ body {
     overflow: auto;
 }
 
-#mailHtml{
+#mailHtml {
     overflow: auto;
+}
+
+.part {
+    .key {
+        white-space: nowrap;
+        font-weight: bold;
+        width: 1px;
+        text-align: right;
+    }
 }

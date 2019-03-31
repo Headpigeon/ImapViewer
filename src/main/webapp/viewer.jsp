@@ -53,12 +53,18 @@
                         HTML
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" id="mailDetailsTab" data-toggle="tab" href="#mailDetails">
+                        Details
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="card-body">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" id="mailText"></div>
                 <div class="tab-pane" id="mailHtml"></div>
+                <div class="tab-pane" id="mailDetails"></div>
             </div>
         </div>
     </div>
