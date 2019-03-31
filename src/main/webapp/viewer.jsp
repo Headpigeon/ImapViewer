@@ -60,6 +60,15 @@
                 </li>
             </ul>
         </div>
+
+        <div class="card-header d-none" id="attachments">
+            <ul class="nav nav-pills" id="attachmentList">
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Attachments</a>
+                </li>
+            </ul>
+        </div>
+
         <div class="card-body">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" id="mailText"></div>

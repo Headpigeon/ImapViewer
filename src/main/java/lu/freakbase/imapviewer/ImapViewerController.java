@@ -42,7 +42,7 @@ public class ImapViewerController {
                 mod.setNumber(msg.getMessageNumber());
                 Address[] addresses = msg.getFrom();
                 if (addresses != null) {
-                    mod.setSender(Arrays.stream(addresses).map(Address::toString).collect(Collectors.joining(", ")));
+                    mod.setSender(MailUtil.joinAddresses(addresses));
                 }
                 mod.setSubject(msg.getSubject());
                 mod.setDate(msg.getSentDate());

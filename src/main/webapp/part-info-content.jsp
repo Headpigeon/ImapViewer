@@ -4,6 +4,30 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <table class="table table-sm table-bordered part">
+    <c:if test="${not empty part.from}">
+        <tr>
+            <td class="key">From:</td>
+            <td class="value"><c:out value="${part.from}" /></td>
+        </tr>
+    </c:if>
+    <c:if test="${not empty part.replyTo}">
+        <tr>
+            <td class="key">Reply To</td>
+            <td class="value"><c:out value="${part.replyTo}" /></td>
+        </tr>
+    </c:if>
+    <c:if test="${not empty part.recipients}">
+        <tr>
+            <td class="key">Recipients</td>
+            <td class="value"><c:out value="${part.recipients}" /></td>
+        </tr>
+    </c:if>
+    <c:if test="${not empty part.subject}">
+        <tr>
+            <td class="key">Subject</td>
+            <td class="value"><c:out value="${part.subject}" /></td>
+        </tr>
+    </c:if>
     <c:if test="${part.sentDate != null}">
         <tr>
             <td class="key">Sent Date:</td>
@@ -44,6 +68,21 @@
         <tr>
             <td class="key">Size (bytes):</td>
             <td class="value"><c:out value="${part.size}" /></td>
+        </tr>
+    </c:if>
+    <c:if test="${not empty part.headers}">
+        <tr>
+            <td class="key">Headers:</td>
+            <td>
+                <table class="table table-sm table-bordered">
+                <c:forEach var="h" items="${part.headers}">
+                    <tr>
+                        <td class="key"><c:out value="${h.name}" />:</td>
+                        <td class="value"><c:out value="${h.value}" /></td>
+                    </tr>
+                </c:forEach>
+                </table>
+            </td>
         </tr>
     </c:if>
     <c:if test="${not empty part.subParts}">
