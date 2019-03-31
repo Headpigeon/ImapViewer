@@ -30,21 +30,6 @@
     
     <dependencies>
         <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-cdi</artifactId>
-            <version>3.6.3.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-servlet-initializer</artifactId>
-            <version>3.6.3.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-validator-provider-11</artifactId>
-            <version>3.6.3.Final</version>
-        </dependency>
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
@@ -62,7 +47,7 @@
         </dependency>
         <dependency>
             <groupId>org.eclipse.krazo</groupId>
-            <artifactId>krazo-resteasy</artifactId>
+            <artifactId>krazo-jersey</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>    
     </dependencies>
