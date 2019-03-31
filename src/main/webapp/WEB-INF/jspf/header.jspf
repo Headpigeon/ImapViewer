@@ -1,0 +1,13 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title><c:out value="${config.title}" /></title>
+        <c:forEach var="css" items="${config.css}">
+            <link rel="stylesheet" href="/css/${css}" />
+        </c:forEach>
+    </head>
+    <body>
+

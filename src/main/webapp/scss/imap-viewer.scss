@@ -1,0 +1,43 @@
+
+body {
+    margin-top: 32px;
+}
+
+#mailList {
+    
+    padding-top: 8px;
+    padding-bottom: 8px;
+    
+    .header {
+        font-weight: bold;
+        padding-bottom: 4px;
+    }
+
+    #mailListContent {
+        height: 200px;
+        overflow-y: auto;
+        cursor: pointer;
+        font-size: 80%;
+
+        & > div {
+            padding-top: 2px;
+            padding-bottom: 2px;
+            border-top: 1px solid rgba(0, 0, 0, 0.125);
+            
+            &:hover {
+                background-color: #80BBFF;
+            }
+        }
+    }
+    
+}
+
+#mailText {
+    white-space: pre;
+    font-family: monospace;
+    overflow: auto;
+}
+
+#mailHtml{
+    overflow: auto;
+}
