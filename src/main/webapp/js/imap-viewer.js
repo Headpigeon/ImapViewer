@@ -6,6 +6,23 @@ $(document).ready(function() {
         document.location.reload();
     });
     
+    window.addEventListener("message", function(event) {
+        if (typeof(event.data.newHeight) !== 'undefined') {
+            // add padding for potential horizontal scrollbar
+            $('#mailHtmlContent').height((event.data.newHeight + 20) + 'px');
+        }
+    }, false);
+    
+    var IFRAME_LOADED_SCRIPT = "\
+<script>\
+window.addEventListener('load', function(event) { \
+    if (parent !== null) {\
+        parent.postMessage({newHeight: document.querySelector('html').offsetHeight}, '*');\
+    }\
+});\
+</script>\
+";
+    
     $('#mailListContent').on('click', '[data-message-number]', null, function(e) {
         var msgNumber = $(e.target).closest('[data-message-number]').attr('data-message-number');
 
@@ -23,8 +40,9 @@ $(document).ready(function() {
         var loadHtmlSuccess = false;
         var htmlLoaded = $.Deferred();
         loadHtml.done(function(html) {
-            $('#mailHtml').html(html);
-            fixEmbedded($('#mailHtml'), msgNumber);
+            var $el = $('<div>').html(html);
+            fixEmbedded($el, msgNumber);
+            setIframeContent($('#mailHtmlContent')[0], $el.html() + IFRAME_LOADED_SCRIPT);
             loadHtmlSuccess = true;
         }).always(function() {
             htmlLoaded.resolve();
@@ -84,4 +102,9 @@ function fixEmbeddedAttribute($parent, msgNumber, attr) {
         var contentId = $el.attr(attr).substring(4);
         $el.attr(attr, API_ROOT + '/part/' + msgNumber + '/' + contentId);
     });
+}
+
+function setIframeContent(iframe, html) {
+    iframe.src = 'data:text/html;charset=utf-8,' + escape(html);
+    
 }

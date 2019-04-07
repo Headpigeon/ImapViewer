@@ -72,7 +72,7 @@
         <div class="card-body">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane" id="mailText"></div>
-                <div class="tab-pane" id="mailHtml"></div>
+                <div class="tab-pane" id="mailHtml"><iframe id="mailHtmlContent" src="javascript:void(0);"></iframe></div>
                 <div class="tab-pane" id="mailDetails"></div>
             </div>
         </div>
