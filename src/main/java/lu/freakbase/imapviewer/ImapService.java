@@ -60,9 +60,6 @@ public class ImapService {
     }
     
     public Part getPart(int msgNumber, String contentId) {
-        if (!contentId.startsWith("<")) {
-            contentId = "<" + contentId + ">";
-        }
         try {
             Folder inbox = getInbox();
             Message m = inbox.getMessage(msgNumber);
@@ -82,6 +79,12 @@ public class ImapService {
             BodyPart part = multiPart.getBodyPart(contentId);
             if (part != null) {
                 return part;
+            }
+            if (contentId.startsWith("<")) {
+                part = multiPart.getBodyPart("<" + contentId + ">");
+                if (part != null) {
+                    return part;
+                }
             }
             for (int i = 0; i < multiPart.getCount(); i++) {
                 BodyPart child = multiPart.getBodyPart(i);
