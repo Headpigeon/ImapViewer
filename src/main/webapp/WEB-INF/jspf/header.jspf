@@ -3,10 +3,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script>
+            var BASE_SERVER = '${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}';
+            var BASE_PATH = '${pageContext.request.contextPath}';
+            var BASE_URL = BASE_SERVER + BASE_PATH;
+        </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><c:out value="${config.title}" /></title>
         <c:forEach var="css" items="${config.css}">
-            <link rel="stylesheet" href="/css/${css}" />
+            <link rel="stylesheet" href="${pageContext.request.contextPath}/css/${css}" />
         </c:forEach>
     </head>
     <body>

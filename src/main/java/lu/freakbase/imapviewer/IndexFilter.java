@@ -26,8 +26,8 @@ public class IndexFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (request instanceof HttpServletRequest) {
             HttpServletRequest httpReq = (HttpServletRequest)request;
-            if (httpReq.getRequestURI().equals("/")) {
-                ((HttpServletResponse)response).sendRedirect("/mail");
+            if (httpReq.getServletPath().equals("/")) {
+                ((HttpServletResponse)response).sendRedirect(httpReq.getContextPath() + "/mail");
                 return;
             }
         }

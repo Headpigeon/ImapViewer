@@ -1,7 +1,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
     <c:forEach var="js" items="${config.js}">
-        <script defer src="/js/${js}"></script>
+        <script defer src="${pageContext.request.contextPath}/js/${js}"></script>
     </c:forEach>
     </body>
 </html>

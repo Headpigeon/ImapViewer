@@ -1,4 +1,4 @@
-var ROOT = '/mail';
+var ROOT = BASE_URL + '/mail';
 var API_ROOT = ROOT + '/api';
 
 $(document).ready(function() {
@@ -82,6 +82,6 @@ function fixEmbeddedAttribute($parent, msgNumber, attr) {
     $parent.find('[' + attr + '^="cid:"]').each(function(index, el) {
         var $el = $(el);
         var contentId = $el.attr(attr).substring(4);
-        $el.attr(attr, '/mail/api/part/' + msgNumber + '/' + contentId);
+        $el.attr(attr, API_ROOT + '/part/' + msgNumber + '/' + contentId);
     });
 }
