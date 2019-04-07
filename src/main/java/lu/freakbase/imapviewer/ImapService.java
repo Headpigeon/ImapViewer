@@ -4,7 +4,7 @@ package lu.freakbase.imapviewer;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -26,12 +26,14 @@ import javax.mail.internet.MimeMultipart;
 @TransactionAttribute(TransactionAttributeType.SUPPORTS)
 public class ImapService {
     
-    @Resource(name = "mail/imapviewer")
-    private Session mail;
-
+    @EJB
+    private Configuration config;
+    
     private Folder getInbox() throws MessagingException {
-        Store store = mail.getStore();
-        store.connect("localhost", "admin", "abc123");
+        Session session = Session.getDefaultInstance(null);
+        
+        Store store = session.getStore("imap");
+        store.connect(config.getHost(), config.getPort(), config.getUsername(), config.getPassword());
 
         Folder folder = store.getFolder("INBOX");
         folder.open(Folder.READ_ONLY);
@@ -80,7 +82,7 @@ public class ImapService {
             if (part != null) {
                 return part;
             }
-            if (contentId.startsWith("<")) {
+            if (!contentId.startsWith("<")) {
                 part = multiPart.getBodyPart("<" + contentId + ">");
                 if (part != null) {
                     return part;
