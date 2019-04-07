@@ -33,4 +33,19 @@ body {
   width: 1px;
   text-align: right; }
 
+.table-no-outer-border {
+  border: none; }
+  .table-no-outer-border tr:first-child td, .table-no-outer-border tr:first-child th {
+    border-top: none; }
+  .table-no-outer-border tr:last-child td, .table-no-outer-border tr:last-child th {
+    border-bottom: none; }
+  .table-no-outer-border td:first-child, .table-no-outer-border th:first-child {
+    border-left: none; }
+  .table-no-outer-border td:last-child, .table-no-outer-border th:last-child {
+    border-right: none; }
+  .table-no-outer-border + .table-no-outer-border {
+    display: block;
+    padding-top: 16px;
+    border-top: 2px dotted rgba(0, 0, 0, 0.125); }
+
 /*# sourceMappingURL=../../../../target/imap-viewer.css.map */

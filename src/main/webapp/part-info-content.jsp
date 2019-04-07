@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<table class="table table-sm table-bordered part">
+<table class="table table-sm table-bordered table-no-outer-border part">
     <c:if test="${not empty part.from}">
         <tr>
             <td class="key">From:</td>
@@ -74,7 +74,7 @@
         <tr>
             <td class="key">Headers:</td>
             <td>
-                <table class="table table-sm table-bordered">
+                <table class="table table-sm table-bordered table-no-outer-border">
                 <c:forEach var="h" items="${part.headers}">
                     <tr>
                         <td class="key"><c:out value="${h.name}" />:</td>

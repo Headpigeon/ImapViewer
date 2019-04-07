@@ -50,3 +50,30 @@ body {
         text-align: right;
     }
 }
+
+.table-no-outer-border {
+    border: none;
+    
+    tr:first-child {
+        td, th {
+            border-top: none;
+        }
+    }
+    tr:last-child {
+        td, th {
+            border-bottom: none;
+        }
+    }
+    td:first-child, th:first-child {
+        border-left: none;
+    }
+    td:last-child, th:last-child {
+        border-right: none;
+    }
+    
+    & + .table-no-outer-border {
+        display: block;
+        padding-top: 16px;
+        border-top: 2px dotted rgba(0, 0, 0, 0.125);
+    }
+}
