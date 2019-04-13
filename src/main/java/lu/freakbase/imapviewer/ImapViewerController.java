@@ -1,9 +1,9 @@
 package lu.freakbase.imapviewer;
 
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.mail.Address;
@@ -49,6 +49,7 @@ public class ImapViewerController {
                 mod.setContents(msg.toString());
                 modList.getMessages().add(mod);
             }
+            Collections.sort(modList.getMessages(), (a, b) -> -compareDates(a.getDate(), b.getDate()));
         } catch (Exception ex) {
             Logger.getLogger(ImapViewerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,6 +75,20 @@ public class ImapViewerController {
         config.addCss("imap-viewer.css", null);
 
         models.put("config", config);
+    }
+    
+    public static int compareDates(Date a, Date b) {
+        if (a == null) {
+            if (b == null) {
+                return 0;
+            } else {
+                return 1;
+            }
+        } else if (b == null) {
+            return -1;
+        } else {
+            return a.compareTo(b);
+        }
     }
     
 }
