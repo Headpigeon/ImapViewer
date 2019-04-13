@@ -42,6 +42,7 @@ window.addEventListener('load', function(event) { \
         loadHtml.done(function(html) {
             var $el = $('<div>').html(html);
             fixEmbedded($el, msgNumber);
+            fixLinks($el);
             setIframeContent($('#mailHtmlContent')[0], $el.html() + IFRAME_LOADED_SCRIPT);
             loadHtmlSuccess = true;
         }).always(function() {
@@ -91,6 +92,10 @@ window.addEventListener('load', function(event) { \
         })
     });
 });
+
+function fixLinks($el) {
+    $el.find('a[href]').attr('target', '_blank');
+}
 
 function fixEmbedded($parent, msgNumber) {
     fixEmbeddedAttribute($parent, msgNumber, 'src');
