@@ -26,6 +26,8 @@ import org.json.JSONArray;
 @Path("api")
 public class ImapViewerApi {
     
+    private static final String UTF8_CHARSET_SUFFIX = "; charset=UTF-8";
+    
     @EJB
     private ImapService imap;
     
@@ -64,7 +66,8 @@ public class ImapViewerApi {
         }
         
         try {
-            return Response.status(Response.Status.OK).type("text/plain").entity(part.getContent().toString()).build();
+            return Response.status(Response.Status.OK).type("text/plain" + UTF8_CHARSET_SUFFIX)
+                    .entity(part.getContent().toString()).build();
         } catch (IOException | MessagingException ex) {
             Logger.getLogger(ImapViewerApi.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
@@ -84,7 +87,8 @@ public class ImapViewerApi {
         }
         
         try {
-            return Response.status(Response.Status.OK).type("text/html").entity(part.getContent().toString()).build();
+            return Response.status(Response.Status.OK).type("text/html" + UTF8_CHARSET_SUFFIX)
+                    .entity(part.getContent().toString()).build();
         } catch (IOException | MessagingException ex) {
             Logger.getLogger(ImapViewerApi.class.getName()).log(Level.SEVERE, null, ex);
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();

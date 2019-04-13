@@ -105,6 +105,11 @@ function fixEmbeddedAttribute($parent, msgNumber, attr) {
 }
 
 function setIframeContent(iframe, html) {
-    iframe.src = 'data:text/html;charset=utf-8,' + escape(html);
-    
+    iframe.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(encodeEntities(html));
+}
+
+function encodeEntities(str) {
+    return str.replace(/[\u00A0-\u9999]/g, function(i) {
+        return '&#' + i.charCodeAt(0) + ';';
+    });
 }
